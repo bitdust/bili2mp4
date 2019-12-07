@@ -1,6 +1,6 @@
 # bili2mp4  
-将bilibili安卓客户端的离线缓存转换为mp4.  
-基于 ffmpeg 实现  
+将bilibili安卓客户端的离线缓存转换为mp4  
+基于 python3.5+ 和 ffmpeg 实现  
 
 # 下载地址
 本项目只提供windows版本的独立可执行程序，下载地址在此---->[点我!](https://github.com/bitdust/bili2mp4/releases)
@@ -15,7 +15,7 @@
 7. 一同输出的还包括xml弹幕文件，推荐使用<弹弹play>播放器播放视频和弹幕.
 
 # 使用演示
-![使用演示](.\example.gif)
+![使用演示](./screenshot.gif)
 
 # 打包&进阶使用
 ## 可以在linux下使用吗？
@@ -33,5 +33,5 @@ python bili2mp4.py <视频文件夹>
 pyinstaller -F bili2mp4.spec
 ```
 exe文件保存在dist目录下。
-## 为什么有人在有电脑的情况下还想用bilibili安卓客户端下载视频？是电脑不能上网吗还是手机话费太多了？  
+## 为什么用安卓客户端下载视频？是电脑不能上网还是手机话费太多了？  
 那就问问这个世界为什么会这么操蛋吧~  
