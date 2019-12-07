@@ -128,3 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 bili2mp4_output/
+ffmpeg.exe
+ffmpeg
