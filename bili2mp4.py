@@ -43,7 +43,7 @@ if hasattr(sys,'_MEIPASS'): # 判断是否为 pyinstaller 打包环境
     FFMPEG_CMD = os.path.join(sys._MEIPASS, ffmpeg_name)
     if not os.path.exists(FFMPEG_CMD):
         print(r"pyinstall打包出问题啦，ffmpeg找不到!")
-        exit(-1)
+        sys.exit(-1)
 else:
     if os.path.exists(os.path.join(SCRIPT_DIR,ffmpeg_name)):
         FFMPEG_CMD = os.path.join(SCRIPT_DIR,ffmpeg_name) # 优先使用自带的 ffmpeg
@@ -51,7 +51,7 @@ else:
         FFMPEG_CMD = ffmpeg_name
     else:
         print(r"找不到ffmpeg命令，请安装ffmpeg或下载ffmepg并放在同一目录下.")
-        exit(-1)
+        sys.exit(-1)
 
 def ffmpeg_concat_m4s(segments:list, video_name:str):
     # 进入输出目录，并将指定的m4s文件使用ffmpeg进行连接，输出在同一目录中并修改文件名
@@ -117,20 +117,24 @@ def convert_episode(episode_path : str):
     elif tag_type.isdigit():
         status = ffmpeg_concat_m4s(video_segments, episode_name)
     else:
+        status = -1
         print(f"未知格式: {tag_type} 转换失败.")
     for segment in video_segments:
         os.remove(os.path.join(OUTPUT_DIR,segment))
     if status==0:
         print(f"{episode_name} 转换完成.")
+        return(0)
     else:
         print(f"{episode_name} 转换失败.")
+        return(-1)
 
-
+item_cnt = 0
 for item in os.listdir(MAIN_DIR):
     # 遍历主文件夹
     sub_dir = os.path.join(MAIN_DIR,item)
-    if os.path.isdir(sub_dir):
-        if 'entry.json' in os.listdir(sub_dir):
-            convert_episode(sub_dir) # 处理每集视频
-        else:
-            continue
+    if os.path.isdir(sub_dir) and ('entry.json' in os.listdir(sub_dir)):
+        status = convert_episode(sub_dir) # 处理每集视频
+        if status==0:
+            item_cnt = item_cnt+1
+print(f"已转换 {item_cnt} 个视频.")
+sys.exit(0)
