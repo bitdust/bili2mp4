@@ -110,7 +110,7 @@ def convert_episode(episode_path : str):
     # 处理视频文件
     tag_type = entry_dict["type_tag"] # 视频的存储类型，也是视频文件的存放目录名称
     seg_path = os.path.join(episode_path, tag_type)
-    video_segments = [i for i in os.listdir(seg_path) if 'blv' in i.split('.')[-1] or 'm4s' in i.split('.')[-1]]
+    video_segments = [i for i in os.listdir(seg_path) if ('.blv'==os.path.splitext(i)[1] or '.m4s'==os.path.splitext(i)[1])]
     for segment in video_segments:
         shutil.copy(os.path.join(episode_path,tag_type,segment), OUTPUT_DIR)
     if 'flv' in tag_type:
