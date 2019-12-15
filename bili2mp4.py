@@ -10,6 +10,7 @@ import argparse
 
 parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
 parser.add_argument("video_dir", type=str, help="视频目录文件夹")
+parser.add_argument("-n", "--nopause", action="store_true", help="转换完成后直接退出程序，用于脚本批量执行")
 parser.description = r"""转换bilibili安卓客户端的离线缓存视频到mp4文件. version:0.1-x64
 
     Q: bilibili安卓客户端的缓存文件在哪里？
@@ -137,4 +138,8 @@ for item in os.listdir(MAIN_DIR):
         if status==0:
             item_cnt = item_cnt+1
 print(f"已转换 {item_cnt} 个视频.")
-sys.exit(0)
+if args.nopause:
+    sys.exit(0)
+else:
+    input("Press Enter to exit.")
+    sys.exit(0)

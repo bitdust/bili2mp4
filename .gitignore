@@ -129,3 +129,4 @@ dmypy.json
 bili2mp4_output/
 ffmpeg.exe
 ffmpeg
+ffmpeg-*
