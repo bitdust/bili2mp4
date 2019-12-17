@@ -11,7 +11,7 @@ import argparse
 parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
 parser.add_argument("video_dir", type=str, help="视频目录文件夹")
 parser.add_argument("-n", "--nopause", action="store_true", help="转换完成后直接退出程序，用于脚本批量执行")
-parser.description = r"""转换bilibili安卓客户端的离线缓存视频到mp4文件. version:0.1-x64
+parser.description = r"""转换bilibili安卓客户端的离线缓存视频到mp4文件. version:0.2-x64
 
     Q: bilibili安卓客户端的缓存文件在哪里？
     A: 该离线文件通常在手机的 'Android\data\tv.danmaku.bili\download' 文件夹中.
